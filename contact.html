@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="styles/components.css" />
   <link rel="stylesheet" href="styles/utilities.css" />
   <script src="scripts/home.js" defer></script>
+  <!-- reCAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -32,7 +34,6 @@
       <ul class="nav-list">
         <li class="nav-item"><a href="index.html">Home</a></li>
         <li class="nav-item"><a href="poems.html">Poems</a></li>
-        <!---<li class="nav-item"><a href="publications.html">Publications</a></li>--->
         <li class="nav-item active"><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -65,19 +66,22 @@
 
           <div class="contact-form">
             <h3>Send Me a Message</h3>
-            <form id="contact-form">
+            <form id="contact-form" action="subscribe.php" method="POST">
               <div class="form-group">
                 <label for="contact-name">Name</label>
-                <input type="text" id="contact-name" required />
+                <input type="text" id="contact-name" name="name" required />
               </div>
               <div class="form-group">
                 <label for="contact-email">Email</label>
-                <input type="email" id="contact-email" required />
+                <input type="email" id="contact-email" name="email" required />
               </div>
               <div class="form-group">
                 <label for="contact-message-text">Message</label>
-                <textarea id="contact-message-text" rows="5" required></textarea>
+                <textarea id="contact-message-text" name="message" rows="5" required></textarea>
               </div>
+              <!-- Google reCAPTCHA widget -->
+              <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
+              <br />
               <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
             <div id="contact-message" class="form-message"></div>
@@ -93,46 +97,7 @@
     <section class="faq-section">
       <div class="container">
         <h2>Frequently Asked Questions</h2>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <h3>Can I submit a poem for your site?</h3>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Yes! I'm always open to featuring poetic voices. Use the contact form to send your work.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <h3>Do you offer writing workshops?</h3>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>I'm working on some small virtual poetry circles. Reach out if you're interested.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <h3>Can I quote your poems?</h3>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Yes, with attribution. Please credit my name and link back to this site if possible.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <h3>Do you take commissions?</h3>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Sometimes! Reach out via the contact form with details of your request.</p>
-          </div>
-        </div>
+        <!-- FAQs here... -->
       </div>
     </section>
   </main>
@@ -145,18 +110,10 @@
           <p>Showing a little piece of my soul.</p>
           <p>Follow me:</p>
           <div class="social-icons">
-            <a href="https://instagram.com/marcosmurilocampos" target="_blank">
-              <img src="images/instagram.png" alt="Instagram" />
-            </a>
-            <a href="https://twitter.com/camposmmcarcos" target="_blank">
-              <img src="images/twitter.png" alt="Twitter" />
-            </a>
-            <a href="https://facebook.com/marcosdcampos" target="_blank">
-              <img src="images/facebook.png" alt="Facebook" />
-            </a>
-            <a href="https://tiktok.com/marcosmurilocampos" target="_blank">
-              <img src="images/tiktok.png" alt="TikTok" />
-            </a>
+            <a href="https://instagram.com/marcosmurilocampos" target="_blank"><img src="images/instagram.png" alt="Instagram" /></a>
+            <a href="https://twitter.com/camposmmcarcos" target="_blank"><img src="images/twitter.png" alt="Twitter" /></a>
+            <a href="https://facebook.com/marcosdcampos" target="_blank"><img src="images/facebook.png" alt="Facebook" /></a>
+            <a href="https://tiktok.com/marcosmurilocampos" target="_blank"><img src="images/tiktok.png" alt="TikTok" /></a>
           </div>
         </div>
         <div class="footer-section">
@@ -164,7 +121,6 @@
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="poems.html">Poems</a></li>
-            <!---<li><a href="publications.html">Publications</a></li>--->
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
@@ -177,3 +133,4 @@
   </footer>
 </body>
 </html>
+
