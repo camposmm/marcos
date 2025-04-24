@@ -1,163 +1,153 @@
-// Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.getElementById('menuToggle');
-    const primaryNav = document.getElementById('primaryNav');
+  // Set current year and last modified date
+  const currentYear = new Date().getFullYear();
+  document.getElementById('current-year').textContent = currentYear;
   
-    menuToggle.addEventListener('click', function() {
-      primaryNav.classList.toggle('open');
-      menuToggle.textContent = primaryNav.classList.contains('open') ? 'Close' : 'Menu';
-    });
+  const lastModified = document.lastModified;
+  document.getElementById('last-modified').textContent = lastModified;
   
-    // Set Current Year in Footer
-    const currentYearElement = document.getElementById('currentYear');
-    if (currentYearElement) {
-      currentYearElement.textContent = new Date().getFullYear();
-    }
+  // Mobile navigation toggle
+  const navToggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.nav');
   
-    // Set Last Modified Date in Footer
-    const lastModifiedElement = document.getElementById('lastModified');
-    if (lastModifiedElement) {
-      lastModifiedElement.textContent = document.lastModified;
-    }
-  
-    // Fetch Weather Data
-    fetchWeatherData();
-  
-    // Load Business Spotlights
-    loadSpotlights();
+  navToggle.addEventListener('click', function() {
+      navToggle.classList.toggle('active');
+      nav.classList.toggle('active');
   });
   
-  // Weather API Functions
-  async function fetchWeatherData() {
-    try {
-      // Replace with your API key and location
-      const apiKey = 'YOUR_API_KEY';
-      const city = 'YourCity';
-      const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`;
-      const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`;
+  // Close mobile menu when clicking on a link
+  const navLinks = document.querySelectorAll('.nav-item a');
+  navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+          if (nav.classList.contains('active')) {
+              navToggle.classList.remove('active');
+              nav.classList.remove('active');
+          }
+      });
+  });
   
-      // For demo purposes, we'll use mock data instead of actual API calls
-      // In a real application, you would use:
-      // const weatherResponse = await fetch(weatherUrl);
-      // const weatherData = await weatherResponse.json();
+  // Testimonial slider
+  const testimonials = document.querySelectorAll('.testimonial');
+  const dotsContainer = document.querySelector('.slider-dots');
+  const prevBtn = document.querySelector('.slider-prev');
+  const nextBtn = document.querySelector('.slider-next');
+  let currentIndex = 0;
   
-      const mockWeatherData = {
-        main: { temp: 29 },
-        weather: [{ description: 'partly cloudy', icon: '04d' }]
-      };
+  // Create dots
+  testimonials.forEach((_, index) => {
+      const dot = document.createElement('span');
+      dot.classList.add('dot');
+      if (index === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToTestimonial(index));
+      dotsContainer.appendChild(dot);
+  });
   
-      const mockForecastData = {
-        list: [
-          { dt: Date.now() / 1000 + 86400, main: { temp: 30 } },
-          { dt: Date.now() / 1000 + 172800, main: { temp: 32 } },
-          { dt: Date.now() / 1000 + 259200, main: { temp: 28 } }
-        ]
-      };
+  const dots = document.querySelectorAll('.dot');
   
-      displayCurrentWeather(mockWeatherData);
-      displayForecast(mockForecastData);
-    } catch (error) {
-      console.error('Error fetching weather data:', error);
-      document.getElementById('temp').textContent = 'Weather data unavailable';
-    }
+  function updateTestimonial() {
+      testimonials.forEach((testimonial, index) => {
+          testimonial.classList.toggle('active', index === currentIndex);
+      });
+      
+      dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentIndex);
+      });
   }
   
-  function displayCurrentWeather(data) {
-    const tempElement = document.getElementById('temp');
-    const descElement = document.getElementById('description');
-    const iconElement = document.getElementById('weather-icon');
-  
-    if (tempElement && descElement && iconElement) {
-      tempElement.textContent = `${Math.round(data.main.temp)}°C`;
-      
-      descElement.textContent = data.weather[0].description;
-      
-      // Add weather icon
-      iconElement.innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="${data.weather[0].description}">`;
-    }
+  function goToTestimonial(index) {
+      currentIndex = index;
+      updateTestimonial();
   }
   
-  function displayForecast(data) {
-    const forecastElement = document.getElementById('forecast');
-    if (!forecastElement) return;
-  
-    forecastElement.innerHTML = '';
-    
-    // Get only one forecast per day (midday)
-    const dailyForecasts = data.list.filter((item, index) => index % 8 === 0).slice(0, 3);
-    
-    dailyForecasts.forEach(day => {
-      const date = new Date(day.dt * 1000);
-      const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
-      
-      const forecastDay = document.createElement('div');
-      forecastDay.className = 'forecast-day';
-      forecastDay.innerHTML = `
-        <h3>${dayName}</h3>
-        <p>${Math.round(day.main.temp)}°C</p>
-      `;
-      
-      forecastElement.appendChild(forecastDay);
-    });
+  function nextTestimonial() {
+      currentIndex = (currentIndex + 1) % testimonials.length;
+      updateTestimonial();
   }
   
-  // Business Spotlights Functions
-  function loadSpotlights() {
-    // In a real application, this data would come from a JSON file or API
-    const members = [
-      {
-        name: "Americanas",
-        logo: "https://brandcenter.americanas.io/wp-content/uploads/2022/02/logo_americanas-1.svg",
-        phone: "(555) 123-4567",
-        address: "123 Main St",
-        website: "https://americanas.com.br",
-        membershipLevel: "gold"
-      },
-      {
-        name: "Casas Bahia",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Casas_Bahia_logo.svg",
-        phone: "(555) 987-6543",
-        address: "456 Oak Ave",
-        website: "https://casasbahia.com.br",
-        membershipLevel: "gold"
-      },
-      {
-        name: "Zara",
-        logo: "https://logosmarcas.net/wp-content/uploads/2020/05/Zara-Logo.png",
-        phone: "(555) 555-1212",
-        address: "789 Pine St",
-        website: "https://zara.com.br",
-        membershipLevel: "gold"
+  function prevTestimonial() {
+      currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+      updateTestimonial();
+  }
+  
+  nextBtn.addEventListener('click', nextTestimonial);
+  prevBtn.addEventListener('click', prevTestimonial);
+  
+  // Auto-advance testimonials
+  let testimonialInterval = setInterval(nextTestimonial, 5000);
+  
+  // Pause auto-advance on hover
+  const slider = document.querySelector('.testimonial-slider');
+  slider.addEventListener('mouseenter', () => clearInterval(testimonialInterval));
+  slider.addEventListener('mouseleave', () => {
+      testimonialInterval = setInterval(nextTestimonial, 5000);
+  });
+  
+  // Newsletter form
+  const newsletterForm = document.getElementById('newsletter-form');
+  const newsletterMessage = document.getElementById('newsletter-message');
+  
+  newsletterForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('newsletter-email').value;
+      
+      // Simple validation
+      if (!email.includes('@') || !email.includes('.')) {
+          newsletterMessage.textContent = 'Please enter a valid email address.';
+          newsletterMessage.classList.add('error');
+          newsletterMessage.classList.remove('success');
+          newsletterMessage.style.display = 'block';
+          return;
       }
-    ];
-    
-    // Filter for gold and silver members
-    const eligibleMembers = members.filter(member => 
-      member.membershipLevel === "gold" || member.membershipLevel === "silver"
-    );
-    
-    // Randomly select businesses for spotlight
-    const shuffled = eligibleMembers.sort(() => 0.5 - Math.random());
-    const selectedMembers = shuffled.slice(0, 3);
-    
-    const spotlightContainer = document.getElementById('spotlightContainer');
-    if (!spotlightContainer) return;
-    
-    spotlightContainer.innerHTML = '';
-    
-    selectedMembers.forEach(member => {
-      const spotlightCard = document.createElement('div');
-      spotlightCard.className = 'spotlight-card';
       
-      spotlightCard.innerHTML = `
-        <img src="${member.logo}" alt="${member.name} logo" class="spotlight-logo">
-        <h3>${member.name}</h3>
-        <p>${member.address}</p>
-        <p>${member.phone}</p>
-        <a href="${member.website}" target="_blank">Visit Website</a>
-        <span class="spotlight-level">${member.membershipLevel.toUpperCase()} Member</span>
-      `;
+      // Save to localStorage
+      let subscribers = JSON.parse(localStorage.getItem('newsletterSubscribers') || []);
       
-      spotlightContainer.appendChild(spotlightCard);
-    });
+      // Check if email already exists
+      if (subscribers.includes(email)) {
+          newsletterMessage.textContent = 'You are already subscribed!';
+          newsletterMessage.classList.add('error');
+          newsletterMessage.classList.remove('success');
+          newsletterMessage.style.display = 'block';
+          return;
+      }
+      
+      subscribers.push(email);
+      localStorage.setItem('newsletterSubscribers', JSON.stringify(subscribers));
+      
+      // Show success message
+      newsletterMessage.textContent = 'Thank you for subscribing!';
+      newsletterMessage.classList.add('success');
+      newsletterMessage.classList.remove('error');
+      newsletterMessage.style.display = 'block';
+      
+      // Reset form
+      newsletterForm.reset();
+      
+      // Hide message after 5 seconds
+      setTimeout(() => {
+          newsletterMessage.style.display = 'none';
+      }, 5000);
+  });
+  
+  // Lazy loading for images
+  if ('IntersectionObserver' in window) {
+      const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+      
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  const img = entry.target;
+                  img.src = img.dataset.src || img.src;
+                  img.removeAttribute('data-src');
+                  observer.unobserve(img);
+              }
+          });
+      });
+      
+      lazyImages.forEach(img => {
+          if (img.complete) return;
+          imageObserver.observe(img);
+      });
   }
+});
