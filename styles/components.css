@@ -213,3 +213,120 @@
 .nav-toggle.active .hamburger::after {
     transform: translateY(-8px) rotate(-45deg);
 }
+/* ===== Contact Form Components ===== */
+.form-message {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: var(--border-radius);
+    display: none;
+    font-size: 0.9rem;
+}
+
+.form-message.success {
+    background-color: rgba(76, 175, 80, 0.15);
+    color: #4CAF50;
+    display: block;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.form-message.error {
+    background-color: rgba(244, 67, 54, 0.15);
+    color: #F44336;
+    display: block;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+/* Honeypot field (spam prevention) */
+.honeypot {
+    position: absolute;
+    left: -9999px;
+    height: 0;
+    overflow: hidden;
+}
+
+/* Loading button state */
+.btn-loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.btn-loading .btn-loading-text {
+    visibility: hidden;
+}
+
+.btn-loading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s linear infinite;
+}
+
+@keyframes button-loading-spinner {
+    from { transform: translate(-50%, -50%) rotate(0turn); }
+    to { transform: translate(-50%, -50%) rotate(1turn); }
+}
+
+/* ===== Admin Panel Components ===== */
+.message {
+    background: var(--secondary-dark); 
+    padding: 1.5rem; 
+    margin-bottom: 1rem; 
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+}
+
+.message.unread {
+    border-left: 4px solid var(--accent-amber);
+    background: rgba(255,193,7,0.05);
+}
+
+.message-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.message-meta {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.message-actions {
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.message-actions a {
+    color: var(--accent-amber);
+    font-size: 0.85rem;
+    transition: opacity 0.3s ease;
+}
+
+.message-actions a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--secondary-dark);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}

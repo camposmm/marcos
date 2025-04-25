@@ -440,5 +440,28 @@ cite {
         grid-template-columns: 1fr;
     }
 }
-  
-  
+/* Add to the bottom of layout.css */
+/* ===== Admin Layout ===== */
+.messages-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    animation: fadeIn 0.5s ease;
+}
+
+@media (max-width: 768px) {
+    .message-header {
+        flex-direction: column;
+    }
+    
+    .message-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+    
+    .login-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}  
