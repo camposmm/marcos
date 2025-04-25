@@ -3,40 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A website about me.">
-    <meta property="og:title" content="Chamber home page">
+    <meta name="description" content="Explore the poetic world of Marcos Murilo Campos">
+    <meta property="og:title" content="Marcos Murilo Campos | Poetry">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://www.marcosmurilocampos.com/images/logo.png">
     <meta property="og:url" content="https://www.marcosmurilocampos.com/">
-    <title>Marcos Murilo Campos | My Homepage</title>
+    <title>Marcos Murilo Campos | Poetry</title>
     <meta name="author" content="Marcos Murilo Campos">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/home-main.css">
+    <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/components.css">
     <link rel="stylesheet" href="styles/utilities.css">
     <script src="https://kit.fontawesome.com/your-fontawesome-code.js" crossorigin="anonymous"></script>
-    <script src="scripts/home.js" defer></script>
+    <script src="scripts/main.js" defer></script>
 </head>
 
 <body>
     <header class="header">
         <div class="container">
             <div class="logo">
-                <img width="130" height="120" src="images/logo.png" aria-label="My logo">
-            </img>
+                <img width="130" height="120" src="images/logo.png" alt="Marcos Murilo Campos Logo">
                 <h1>Marcos Murilo Campos</h1>
             </div>
+
             <button class="nav-toggle" aria-label="Toggle navigation">
                 <span class="hamburger"></span>
             </button>
+
             <nav class="nav">
                 <ul class="nav-list">
                     <li class="nav-item active"><a href="index.html">Home</a></li>
                     <li class="nav-item"><a href="poems.html">Poems</a></li>
-                    <!--<li class="nav-item"><a href="events.html">Events</a></li>-->
                     <li class="nav-item"><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
@@ -44,108 +44,104 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero">
             <div class="hero-image-container">
                 <picture>
                     <source media="(max-width: 600px)" srcset="images/hero-mobile.jpg">
                     <source media="(max-width: 1024px)" srcset="images/hero-tablet.jpg">
-                    <img src="images/hero.jpg" alt="Poetry" loading="eager" class="hero-image">
+                    <img src="images/hero.jpg" alt="Dark poetry background" loading="eager" class="hero-image">
                 </picture>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
-                    <h2>Discover new Poetry</h2>
-                    <p>Stop to enjoy a piece of art.</p>
+                    <h2>Discover Dark Poetry</h2>
+                    <p>Immerse yourself in the depth of words and shadows</p>
                     <div class="hero-buttons">
-                        <a href="events.html" class="btn btn-primary">Contact us</a>
-                        <a href="trails.html" class="btn btn-secondary">Explore My Poems</a>
+                        <a href="contact.html" class="btn btn-primary">Contact Me</a>
+                        <a href="poems.html" class="btn btn-secondary">Explore Poems</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Featured Hikes Section -->
         <section class="featured-poems">
             <div class="container">
                 <h2>Featured Poems</h2>
                 <div class="poem-grid">
                     <article class="poem-card">
-                        <img src="images/dark.jpg" alt="the pwoer of the dark" loading="lazy" class="poem-image">
+                        <img src="images/dark.jpg" alt="The Power of the Dark" loading="lazy" class="poem-image">
                         <div class="poem-info">
                             <h3>The Power of the Dark</h3>
                             <div class="poem-meta">
-                                <span class="difficulty easy">Deep</span>
+                                <span class="theme dark">Dark</span>
                             </div>
-                            <p>A Piece Of Poetry.</p>
-                            <a href="poems.html#the-power-of-the-dark" class="btn btn-secondary">Learn More</a>
+                            <p>A journey through apocalyptic visions and inner shadows</p>
+                            <a href="poems.html#the-power-of-the-dark" class="btn btn-secondary">Read Poem</a>
                         </div>
                     </article>
-                    
+
                     <article class="poem-card">
                         <img src="images/darkness.jpg" alt="The Darkness Inside" loading="lazy" class="poem-image">
                         <div class="poem-info">
                             <h3>The Darkness Inside</h3>
                             <div class="poem-meta">
-                                <span class="difficulty moderate">Deep</span>
+                                <span class="theme dark">Dark</span>
                             </div>
-                            <p>A Piece Of Poetry.</p>
-                            <a href="poems.html#the-darkness-inside" class="btn btn-secondary">Learn More</a>
+                            <p>Exploring the lingering shadows within</p>
+                            <a href="poems.html#the-darkness-inside" class="btn btn-secondary">Read Poem</a>
                         </div>
                     </article>
-                    
+
                     <article class="poem-card">
                         <img src="images/darkest.jpg" alt="Darkest Sight" loading="lazy" class="poem-image">
                         <div class="poem-info">
                             <h3>Darkest Sight</h3>
                             <div class="poem-meta">
-                                <span class="difficulty hard">Deep</span>
+                                <span class="theme dark">Dark</span>
                             </div>
-                            <p>A Piece Of Poetry.</p>
-                            <a href="poems.html#darkest-sight" class="btn btn-secondary">Learn More</a>
+                            <p>A vision of destructive relationships and emptiness</p>
+                            <a href="poems.html#darkest-sight" class="btn btn-secondary">Read Poem</a>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- Testimonials Section -->
         <section class="testimonials">
             <div class="container">
-                <h2>What Our Readers Say</h2>
+                <h2>What Readers Say</h2>
                 <div class="testimonial-slider">
                     <div class="testimonial active">
                         <blockquote>
-                            "The poems are so deep they are breathtaking!"
+                            "Marcos' poetry reaches into the darkest corners of the soul and illuminates them with raw honesty."
                         </blockquote>
-                        <cite>- Sarah J.</cite>
+                        <cite>- Sarah J., Literature Professor</cite>
                     </div>
                     <div class="testimonial">
                         <blockquote>
-                            "Every single word is so touching! I feel amazed"
+                            "Each word carries weight, each line paints vivid imagery that stays with you long after reading."
                         </blockquote>
-                        <cite>- Michael T.</cite>
+                        <cite>- Michael T., Poetry Enthusiast</cite>
                     </div>
                     <div class="testimonial">
                         <blockquote>
-                            "Perfect. I love it so much."
+                            "The way Marcos blends darkness with beauty creates a unique and captivating poetic voice."
                         </blockquote>
-                        <cite>- Ana T.</cite>
+                        <cite>- Ana T., Book Blogger</cite>
                     </div>
                 </div>
                 <div class="slider-controls">
-                    <button class="slider-prev" aria-label="Previous testimonial">❮</button>
+                    <button class="slider-prev" aria-label="Previous testimonial"></button>
                     <div class="slider-dots"></div>
-                    <button class="slider-next" aria-label="Next testimonial">❯</button>
+                    <button class="slider-next" aria-label="Next testimonial"></button>
                 </div>
             </div>
         </section>
 
-        <!-- Call to Action Section -->
         <section class="cta">
             <div class="container">
                 <div class="cta-content">
-                    <h2>Ready for the art?</h2>
-                    <p>Join our mailing list to receive updates on new posts and special events.</p>
+                    <h2>Stay Connected</h2>
+                    <p>Join my newsletter for new poems and updates</p>
                     <form id="newsletter-form" class="newsletter-form">
                         <input type="email" id="newsletter-email" placeholder="Your email address" required>
                         <button type="submit" class="btn btn-primary">Subscribe</button>
@@ -160,38 +156,40 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Breath through art</h3>
-                    <p>Showing a little piece of my soul.</p>
-                    <p>Follow me:</p>
-                      <div class="social-icons">
-                      <a href="https://www.instagram.com/marcosmurilocampos" target="_blank">
-                      <img src="images/instagram.png" alt="Instagram" />
-                      </a>
-                      <a href="https://www.twitter.com/camposmmcarcos" target="_blank">
-                      <img src="images/twitter.png" alt="Twitter" />
-                      </a>
-                      <a href="https://www.facebook.com/marcosdcampos" target="_blank">
-                      <img src="images/facebook.png" alt="Facebook" />
-                      </a>
-                      <a href="https://www.tiktok.com/marcosmurilocampos" target="_blank">
-                      <img src="images/tiktok.png" alt="TikTok" />
-                      </a>
-                      </div>
+                    <h3>Marcos Murilo Campos</h3>
+                    <p>Exploring the depths of human experience through poetry</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/marcosmurilocampos" target="_blank" aria-label="Instagram">
+                            <img src="images/instagram.png" alt="Instagram" class="social-icon">
+                        </a>
+                        <a href="https://www.twitter.com/camposmmcarcos" target="_blank" aria-label="Twitter">
+                            <img src="images/twitter.png" alt="Twitter" class="social-icon">
+                        </a>
+                        <a href="https://www.facebook.com/marcosdcampos" target="_blank" aria-label="Facebook">
+                            <img src="images/facebook.png" alt="Facebook" class="social-icon">
+                        </a>
+                        <a href="https://www.tiktok.com/@marcosmurilocampos" target="_blank" aria-label="TikTok">
+                            <img src="images/tiktok.png" alt="TikTok" class="social-icon">
+                        </a>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="trails.html">Trails</a></li>
-                        <!--<li><a href="events.html">Events</a></li>-->
+                        <li><a href="poems.html">Poems</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-          
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <address>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:marcospoetry@gmail.com">marcospoetry@gmail.com</a></p>
+                    </address>
+                </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> All rights reserved. | Marcos Murilo Campos</p>
-            
+                <p>&copy; <span id="current-year"></span> Marcos Murilo Campos. All rights reserved.</p>
                 <p>Last updated: <span id="last-modified"></span></p>
             </div>
         </div>

@@ -1,136 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Explore the poetic world of Marcos Murilo Campos. Connect, ask questions, or share your love for poetry." />
-  <meta name="author" content="Marcos Murilo Campos" />
-  <title>Poetry | Marcos Murilo Campos</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles/home-main.css" />
-  <link rel="stylesheet" href="styles/layout.css" />
-  <link rel="stylesheet" href="styles/components.css" />
-  <link rel="stylesheet" href="styles/utilities.css" />
-  <script src="scripts/home.js" defer></script>
-  <!-- reCAPTCHA -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Marcos Murilo Campos">
+    <title>Contact | Marcos Murilo Campos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/utilities.css">
+    <script src="https://kit.fontawesome.com/your-fontawesome-code.js" crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="scripts/main.js" defer></script>
 </head>
-
 <body>
-  <header class="header">
-    <div class="container">
-      <div class="logo">
-        <img width="130" height="120" src="images/logo.png" alt="My logo" />
-        <h1>Marcos Murilo Campos</h1>
-      </div>
-    </div>
-    <button class="nav-toggle" aria-label="Toggle navigation">
-      <span class="hamburger"></span>
-    </button>
-    <nav class="nav">
-      <ul class="nav-list">
-        <li class="nav-item"><a href="index.html">Home</a></li>
-        <li class="nav-item"><a href="poems.html">Poems</a></li>
-        <li class="nav-item active"><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <section class="contact-hero">
-      <div class="container">
-        <h2>Contact Me</h2>
-        <p>Have a question, want to collaborate, or just love poetry? I’d love to hear from you.</p>
-      </div>
-    </section>
-
-    <section class="contact-content">
-      <div class="container">
-        <div class="contact-grid">
-          <div class="contact-info">
-            <h3>Get in Touch</h3>
-            <address>
-              <p><i class="fas fa-map-marker-alt"></i> Bahia, Brazil</p>
-              <p><i class="fas fa-envelope"></i> <!---<a href="mailto:marcospoetry@gmail.com">marcospoetry@gmail.com</a></p>--->
-            </address>
-
-            <div class="business-hours">
-              <h4>Availability</h4>
-              <p>Monday - Friday: 10am - 6pm</p>
-              <p>Weekends: Creative hours 🌙</p>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img width="130" height="120" src="images/logo.png" alt="Marcos Murilo Campos Logo">
+                <h1>Marcos Murilo Campos</h1>
             </div>
-          </div>
 
-          <div class="contact-form">
-            <h3>Send Me a Message</h3>
-            <form id="contact-form" action="subscribe.php" method="POST">
-              <div class="form-group">
-                <label for="contact-name">Name</label>
-                <input type="text" id="contact-name" name="name" required />
-              </div>
-              <div class="form-group">
-                <label for="contact-email">Email</label>
-                <input type="email" id="contact-email" name="email" required />
-              </div>
-              <div class="form-group">
-                <label for="contact-message-text">Message</label>
-                <textarea id="contact-message-text" name="message" rows="5" required></textarea>
-              </div>
-              <!-- Google reCAPTCHA widget -->
-              <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
-              <br />
-              <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
-            <div id="contact-message" class="form-message"></div>
-          </div>
-        </div>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
 
-        <div class="map-container">
-          <div id="map"></div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html">Home</a></li>
+                    <li class="nav-item"><a href="poems.html">Poems</a></li>
+                    <li class="nav-item active"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-      </div>
-    </section>
+    </header>
 
-    <section class="faq-section">
-      <div class="container">
-        <h2>Frequently Asked Questions</h2>
-        <!-- FAQs here... -->
-      </div>
-    </section>
-  </main>
+    <main>
+        <section class="contact-hero">
+            <div class="container">
+                <h2>Contact Me</h2>
+                <p>Have a question, want to collaborate, or just love poetry? I'd love to hear from you.</p>
+            </div>
+        </section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>Breathe through art</h3>
-          <p>Showing a little piece of my soul.</p>
-          <p>Follow me:</p>
-          <div class="social-icons">
-            <a href="https://instagram.com/marcosmurilocampos" target="_blank"><img src="images/instagram.png" alt="Instagram" /></a>
-            <a href="https://twitter.com/camposmmcarcos" target="_blank"><img src="images/twitter.png" alt="Twitter" /></a>
-            <a href="https://facebook.com/marcosdcampos" target="_blank"><img src="images/facebook.png" alt="Facebook" /></a>
-            <a href="https://tiktok.com/marcosmurilocampos" target="_blank"><img src="images/tiktok.png" alt="TikTok" /></a>
-          </div>
+        <section class="contact-content">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <address>
+                            <p><i class="fas fa-map-marker-alt"></i> Bahia, Brazil</p>
+                            <p><i class="fas fa-envelope"></i> <a href="mailto:marcospoetry@gmail.com">marcospoetry@gmail.com</a></p>
+                        </address>
+                        <div class="business-hours">
+                            <h4>Availability</h4>
+                            <p>Monday - Friday: 10am - 6pm</p>
+                            <p>Weekends: Creative hours</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h3>Send Me a Message</h3>
+                        <form id="contact-form" action="subscribe.php" method="POST">
+                            <div class="form-group">
+                                <label for="contact-name">Name</label>
+                                <input type="text" id="contact-name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email">Email</label>
+                                <input type="email" id="contact-email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-message-text">Message</label>
+                                <textarea id="contact-message-text" name="message" rows="5" required></textarea>
+                            </div>
+                            <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                        <div id="contact-message" class="form-message"></div>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I use your poems for my project?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I'm open to collaborations! Please contact me with details about your project and how you plan to use my work.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you perform your poetry live?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, I occasionally perform at literary events. Check my social media for upcoming performances or contact me about booking.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How can I get notified about new poems?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Subscribe to my newsletter on the homepage or follow me on social media for updates on new work.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Marcos Murilo Campos</h3>
+                    <p>Exploring the depths of human experience through poetry</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/marcosmurilocampos" target="_blank" aria-label="Instagram">
+                            <img src="images/instagram.png" alt="Instagram" class="social-icon">
+                        </a>
+                        <a href="https://www.twitter.com/camposmmcarcos" target="_blank" aria-label="Twitter">
+                            <img src="images/twitter.png" alt="Twitter" class="social-icon">
+                        </a>
+                        <a href="https://www.facebook.com/marcosdcampos" target="_blank" aria-label="Facebook">
+                            <img src="images/facebook.png" alt="Facebook" class="social-icon">
+                        </a>
+                        <a href="https://www.tiktok.com/@marcosmurilocampos" target="_blank" aria-label="TikTok">
+                            <img src="images/tiktok.png" alt="TikTok" class="social-icon">
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="poems.html">Poems</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <address>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:marcospoetry@gmail.com">marcospoetry@gmail.com</a></p>
+                    </address>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Marcos Murilo Campos. All rights reserved.</p>
+                <p>Last updated: <span id="last-modified"></span></p>
+            </div>
         </div>
-        <div class="footer-section">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="poems.html">Poems</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; <span id="current-year"></span> All rights reserved. | Marcos Murilo Campos</p>
-        <p>Last updated: <span id="last-modified"></span></p>
-      </div>
-    </div>
-  </footer>
+    </footer>
 </body>
 </html>
 

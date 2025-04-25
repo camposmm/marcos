@@ -1,6 +1,5 @@
-/* Header Styles */
 .header {
-    background-color: var(--primary-green);
+    background-color: var(--secondary-dark);
     color: var(--text-light);
     padding: 1rem 0;
     position: sticky;
@@ -23,7 +22,7 @@
 
 .logo h1 {
     margin: 0;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
 }
 
 .nav-toggle {
@@ -61,31 +60,74 @@
     width: 100%;
 }
 
-/* Hero Section */
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url('../images/hero.jpg') center/cover no-repeat;
-    color: var(--text-light);
-    padding: 5rem 0;
-    text-align: center;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    max-height: 800px;
+    overflow: hidden;
+}
+
+.hero-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.2) 0%,
+        rgba(0, 0, 0, 0.6) 100%
+    );
 }
 
 .hero-content {
-    max-width: 1000px;
-    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 1200px;
+    text-align: center;
+    color: white;
+    z-index: 2;
 }
 
-.hero h2 {
-    font-size: 2.5rem;
+.hero-content h2 {
+    font-size: 3rem;
     margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.hero p {
-    font-size: 1.25rem;
+.hero-content p {
+    font-size: 1.5rem;
     margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* Featured Hikes */
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
 .featured-poems {
     padding: 4rem 0;
 }
@@ -97,9 +139,51 @@
     margin-top: 2rem;
 }
 
-/* Testimonials */
+.poems-container {
+    padding: 4rem 0;
+}
+
+.poem-detail {
+    margin-bottom: 4rem;
+}
+
+.poem-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent-amber);
+}
+
+.poem-author {
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.poem-text {
+    white-space: pre-wrap;
+    font-family: 'Georgia', serif;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-left: 3px solid var(--accent-amber);
+}
+
+.poem-image-container {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.poem-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
 .testimonials {
-    background-color: var(--secondary-green);
+    background-color: var(--secondary-dark);
     color: var(--text-light);
     padding: 4rem 0;
     text-align: center;
@@ -172,7 +256,6 @@ cite {
     background-color: var(--accent-amber);
 }
 
-/* Call to Action */
 .cta {
     padding: 4rem 0;
     background-color: var(--accent-amber);
@@ -181,11 +264,76 @@ cite {
 
 .cta h2 {
     margin-bottom: 1rem;
+    color: var(--primary-dark);
 }
 
-/* Footer */
+.contact-hero {
+    padding: 4rem 0;
+    text-align: center;
+    background-color: var(--secondary-dark);
+}
+
+.contact-content {
+    padding: 4rem 0;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.contact-info address p,
+.business-hours p {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.map-container {
+    height: 400px;
+    margin-top: 2rem;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+}
+
+.faq-section {
+    padding: 4rem 0;
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--text-muted);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    cursor: pointer;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 1rem;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+    padding-bottom: 1rem;
+}
+
 .footer {
-    background-color: var(--secondary-green);
+    background-color: var(--secondary-dark);
     color: var(--text-light);
     padding: 3rem 0 0;
 }
@@ -230,11 +378,12 @@ cite {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     transition: var(--transition);
+    color: var(--text-light);
 }
 
 .social-links a:hover {
     background-color: var(--accent-amber);
-    color: var(--text-dark);
+    color: var(--primary-dark);
 }
 
 .footer-bottom {
@@ -253,114 +402,43 @@ cite {
     color: rgba(255, 255, 255, 0.7);
 }
 
-/* Responsive Layout */
 @media (max-width: 768px) {
     .nav-toggle {
         display: block;
     }
-
+    
     .nav {
         position: fixed;
         top: 70px;
         left: 0;
         width: 100%;
-        background-color: var(--primary-green);
+        background-color: var(--secondary-dark);
         padding: 1rem;
         transform: translateY(-150%);
         transition: var(--transition);
         box-shadow: var(--box-shadow);
     }
-
+    
     .nav.active {
         transform: translateY(0);
     }
-
+    
     .nav-list {
         flex-direction: column;
         gap: 1.5rem;
     }
-
-    .hero h2 {
+    
+    .hero-content h2 {
         font-size: 2rem;
     }
-
-    .hero p {
+    
+    .hero-content p {
         font-size: 1rem;
     }
-
+    
     .footer-content {
         grid-template-columns: 1fr;
     }
 }
-.social-icons {
-    display: flex;
-    justify-content: left; /* centers the row */
-    align-items: center;
-    gap: 20px; /* space between icons */
-    margin-top: 10px;
-  }
-  
-  .social-icons a img {
-    height: 80px;
-    width: auto;
-    transition: transform 0.3s ease;
-  }
-  
-  .social-icons a img:hover {
-    transform: scale(1.1);
-  }
-  #poems {
-    padding: 40px 20px;
-    text-align: top, center;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.4); /* Optional for contrast */
-  }
-  
-  .poem-title {
-    font-size: 2rem;
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 10px;
-    font-family: 'Georgia', serif;
-  }
-  
-  .poem-author {
-    font-size: 1rem;
-    text-align: center;
-    font-style: italic;
-    color: #f7c08a;
-    margin-bottom: 20px;
-  }
-  
-  .poem-text {
-    white-space: pre-wrap;
-    text-align: center;
-    font-size: 1.2rem;
-    line-height: 1.8;
-    font-family: 'Georgia', serif;
-    margin: 40px;
-  }
-  .image-with-text {
-    text-align: top, center;
-    margin-top: 40px; /* space from top of page */
-  }
-  
-  .image-with-text img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
-  
-  .image-with-text p {
-    margin-top: 56px;  /* <-- This is the space between image and text */
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #f5f5f5;     /* or your preferred color */
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
   
   
