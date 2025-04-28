@@ -244,3 +244,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
 });
+app.post('/submit-form', async (req, res) => {
+    const secret = "YOUR_SECRET_KEY";
+    const response = await fetch(
+        `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${req.body['g-recaptcha-response']}`,
+        { method: 'POST' }
+    );
+    const data = await response.json();
+    
+    if (!data.success) {
+        return res.status(400).send("reCAPTCHA failed");
+    }
+    // Process form data...
+});

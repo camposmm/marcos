@@ -1,4 +1,20 @@
 <?php
+
+// 1. reCAPTCHA Verification (FIRST STEP!)
+$secretKey = "YOUR_SECRET_KEY"; // From Google reCAPTCHA admin
+$captchaResponse = $_POST['g-recaptcha-response'];
+$verifyUrl = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captchaResponse";
+$response = json_decode(file_get_contents($verifyUrl));
+
+if (!$response->success) {
+    die("reCAPTCHA verification failed. Please try again.");
+}
+
+// 2. Only process the form if reCAPTCHA succeeds
+$name = $_POST['name'];
+$email = $_POST['email'];
+// ... (rest of your form processing code)
+
 require_once __DIR__ . '/config.php';
 
 header('Content-Type: application/json');
