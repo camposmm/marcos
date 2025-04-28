@@ -6,16 +6,9 @@ header('Content-Type: application/json');
 $response = ['success' => false, 'message' => ''];
 
 try {
-    // Validate request method
+    // Validate request
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         throw new Exception('Invalid request method');
-    }
-
-    // Honeypot check
-    if (!empty($_POST['website'])) {
-        $response['success'] = true; // Silent fail for bots
-        echo json_encode($response);
-        exit;
     }
 
     // Validate required fields
@@ -31,54 +24,39 @@ try {
         throw new Exception('Security token validation failed');
     }
 
+    // Sanitize inputs
+    $name = htmlspecialchars(trim($_POST['name']));
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $message = htmlspecialchars(trim($_POST['message']));
+
     // Validate email
-    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-    if (!$email) {
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         throw new Exception('Please enter a valid email address');
     }
-
-    // Verify reCAPTCHA
-    $recaptcha = verifyRecaptcha($_POST['g-recaptcha-response']);
-    if (!$recaptcha['success']) {
-        throw new Exception('reCAPTCHA verification failed');
-    }
-
-    // Prepare data
-    $data = [
-        'name' => sanitizeInput($_POST['name']),
-        'email' => $email,
-        'message' => sanitizeInput($_POST['message']),
-        'ip_address' => $_SERVER['REMOTE_ADDR'],
-        'user_agent' => substr($_SERVER['HTTP_USER_AGENT'], 0, 255)
-    ];
 
     // Save to database
     $db = getDBConnection();
     $stmt = $db->prepare("INSERT INTO messages 
         (name, email, message, ip_address, user_agent) 
-        VALUES (:name, :email, :message, :ip_address, :user_agent)");
+        VALUES (?, ?, ?, ?, ?)");
     
-    $stmt->execute($data);
-
-    // Send notification email
-    $emailSubject = "New Contact Form Submission: " . $data['name'];
-    $emailBody = "You have received a new message:\n\n"
-        . "Name: {$data['name']}\n"
-        . "Email: {$data['email']}\n\n"
-        . "Message:\n{$data['message']}\n\n"
-        . "IP: {$data['ip_address']}\n"
-        . "User Agent: {$data['user_agent']}";
-    
-    sendEmail(ADMIN_EMAIL, $emailSubject, $emailBody);
+    $stmt->execute([
+        $name,
+        $email,
+        $message,
+        $_SERVER['REMOTE_ADDR'],
+        substr($_SERVER['HTTP_USER_AGENT'], 0, 255)
+    ]);
 
     $response = [
         'success' => true,
-        'message' => 'Thank you! Your message has been sent successfully.'
+        'message' => 'Thank you! Your message has been sent.'
     ];
 
 } catch (Exception $e) {
     $response['message'] = $e->getMessage();
-    error_log('Contact form error: ' . $e->getMessage());
-} finally {
-    echo json_encode($response);
+    error_log("Contact form error: " . $e->getMessage());
 }
+
+echo json_encode($response);
+?>
