@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
 });
 app.post('/submit-form', async (req, res) => {
-    const secret = "YOUR_SECRET_KEY";
+    const secret = "6Lfe4SYrAAAAAKwXhS-ojf8T85gEXR5s5GtnFAek";
     const response = await fetch(
         `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${req.body['g-recaptcha-response']}`,
         { method: 'POST' }
