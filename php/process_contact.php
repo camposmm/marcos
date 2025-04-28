@@ -79,4 +79,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 }
+// Example: Lock out after 3 failed attempts
+if ($failed_attempts >= 3) {
+    die("Too many attempts. Try again later.");
+}
+$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+$message = htmlspecialchars($_POST['message']);
 ?>
