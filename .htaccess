@@ -11,7 +11,7 @@ RewriteEngine On
 RewriteRule ^admin/?$ admin/login.php [L]
 
 # PHP settings
-php_value session.cookie_httponly 1
+php_value session.cookie_httpsonly 1
 php_value session.cookie_secure 1
 php_value session.cookie_samesite Strict
 # Security Headers
@@ -36,7 +36,7 @@ RewriteRule ^admin/?$ admin/login.php [L]
 
 # PHP settings (if using PHP)
 <IfModule mod_php.c>
-    php_value session.cookie_httponly 1
+    php_value session.cookie_httpsonly 1
     php_value session.cookie_secure 1
     php_value session.cookie_samesite Strict
 </IfModule>
@@ -55,10 +55,38 @@ RewriteRule ^admin/?$ admin/login.php [L]
 </IfModule>
 Options -Indexes
 RewriteEngine On
-RewriteCond %{HTTP_USER_AGENT} (badbot1|badbot2) [NC]
+RewriteCond %{HTTPS_USER_AGENT} (badbot1|badbot2) [NC]
 RewriteRule .* - [F,L]
 <IfModule mod_headers.c>
     Header set X-XSS-Protection "1; mode=block"
     Header set X-Content-Type-Options "nosniff"
     Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
 </IfModule>
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set X-Content-Type-Options "nosniff"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+{
+  "keyChange": "https://acme-v02.api.letsencrypt.org/acme/key-change",
+  "meta": {
+    "caaIdentities": [
+      "letsencrypt.org"
+    ],
+    "profiles": {
+      "classic": "https://letsencrypt.org/docs/profiles#classic",
+      "shortlived": "https://letsencrypt.org/docs/profiles#shortlived (not yet generally available)",
+      "tlsserver": "https://letsencrypt.org/docs/profiles#tlsserver"
+    },
+    "termsOfService": "https://letsencrypt.org/documents/LE-SA-v1.5-February-24-2025.pdf",
+    "website": "https://letsencrypt.org"
+  },
+  "newAccount": "https://acme-v02.api.letsencrypt.org/acme/new-acct",
+  "newNonce": "https://acme-v02.api.letsencrypt.org/acme/new-nonce",
+  "newOrder": "https://acme-v02.api.letsencrypt.org/acme/new-order",
+  "renewalInfo": "https://acme-v02.api.letsencrypt.org/draft-ietf-acme-ari-03/renewalInfo",
+  "revokeCert": "https://acme-v02.api.letsencrypt.org/acme/revoke-cert",
+  "toaycQa41Vk": "https://community.letsencrypt.org/t/adding-random-entries-to-the-directory/33417"
+}
