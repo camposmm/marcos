@@ -257,3 +257,54 @@ app.post('/submit-form', async (req, res) => {
     }
     // Process form data...
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    const formMessage = document.getElementById('contact-message');
+    
+    // Generate and set CSRF token
+    const csrfToken = generateCsrfToken();
+    document.getElementById('csrf_token').value = csrfToken;
+    
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Show loading state
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        
+        // Collect form data
+        const formData = new FormData(contactForm);
+        
+        // Send via AJAX
+        fetch('process_contact.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                formMessage.textContent = data.message;
+                formMessage.className = 'form-message success';
+                contactForm.reset();
+            } else {
+                formMessage.textContent = data.message;
+                formMessage.className = 'form-message error';
+            }
+        })
+        .catch(error => {
+            formMessage.textContent = 'An error occurred. Please try again.';
+            formMessage.className = 'form-message error';
+            console.error('Error:', error);
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Message';
+        });
+    });
+    
+    // Function to generate CSRF token
+    function generateCsrfToken() {
+        return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    }
+});
