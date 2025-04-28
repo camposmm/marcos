@@ -32,21 +32,4 @@ function getDBConnection() {
     }
     return $db;
 }
-
-// CSRF protection
-session_start();
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-add_action('wpcf7_before_send_mail', 'verify_recaptcha');
-function verify_recaptcha($contact_form) {
-    $secretKey = "YOUR_SECRET_KEY";
-    $captchaResponse = $_POST['g-recaptcha-response'];
-    $verify = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captchaResponse");
-    $response = json_decode($verify);
-    
-    if (!$response->success) {
-        wp_die('reCAPTCHA verification failed.');
-    }
-}
 ?>
