@@ -6,7 +6,7 @@ session_start();
 
 // Verify reCAPTCHA first
 if (isset($_POST['g-recaptcha-response'])) {
-    $recaptcha_secret = 'YOUR_RECAPTCHA_SECRET_KEY';
+    $recaptcha_secret = '6LdI3iYrAAAAAFHG_1rkR6yRdivd3RWvhD_njuUP';
     $recaptcha_response = $_POST['g-recaptcha-response'];
     
     $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
