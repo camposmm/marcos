@@ -1,4 +1,3 @@
-document.getElementById("newsletter-form").action = "https://formsubmit.co/marcos@marcosmurilocampos.com";
 document.addEventListener('DOMContentLoaded', function() {
     // Set current year and last modified date
     const currentYear = new Date().getFullYear();
@@ -128,21 +127,99 @@ document.addEventListener('DOMContentLoaded', function() {
                 showFormMessage(newsletterMessage, 'An error occurred. Please try again.', 'error');
                 console.error('Error saving to localStorage:', error);
             }
-            // Load EmailJS dynamically
-const script = document.createElement("script");
-script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js";
-script.onload = () => {
-  emailjs.init("DWiVateh9nLzWFFCb"); // From EmailJS dashboard
-};
-document.head.appendChild(script);
+            // DELETE FROM HERE AND GOES DOWN
+            // Newsletter email notification functionality
+(function() {
+    const newsletterForm = document.getElementById('newsletter-form');
+    if (!newsletterForm) return;
 
-// Send email on subscription
-function sendEmailNotification(email) {
-  emailjs.send("service_astczr8", "template_5d4zcay", {
-    to_email: "marcos@marcosmurilocampos.com",
-    subscriber_email: email,
-  });
-}
+    // Initialize EmailJS (you'll need to sign up at https://www.emailjs.com/)
+    // Replace these with your actual EmailJS credentials
+    const EMAILJS_SERVICE_ID = 'service_astczr8';
+    const EMAILJS_TEMPLATE_ID = 'template_5d4zcay';
+    const EMAILJS_USER_ID = 'DWiVateh9nLzWFFCb';
+    const YOUR_EMAIL = 'marcos@marcosmurilocampos.com'; // Where you want to receive notifications
+    
+    // Load EmailJS library dynamically
+    const loadEmailJS = () => {
+        return new Promise((resolve, reject) => {
+            if (window.emailjs) {
+                resolve(window.emailjs);
+                return;
+            }
+            
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+            script.onload = () => {
+                emailjs.init(EMAILJS_USER_ID);
+                resolve(window.emailjs);
+            };
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+    };
+
+    // Modified newsletter form submission handler
+    const originalSubmitHandler = newsletterForm._submitHandler || newsletterForm.onsubmit;
+    
+    newsletterForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const email = document.getElementById('newsletter-email').value;
+        const newsletterMessage = document.getElementById('newsletter-message');
+
+        // First run the original validation and storage logic
+        if (originalSubmitHandler) {
+            originalSubmitHandler.call(this, e);
+        } else {
+            // Fallback to default behavior if no original handler
+            if (!email.includes('@') || !email.includes('.')) {
+                showFormMessage(newsletterMessage, 'Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            try {
+                let subscribers = JSON.parse(localStorage.getItem('newsletterSubscribers') || '[]');
+                if (subscribers.includes(email)) {
+                    showFormMessage(newsletterMessage, 'You are already subscribed!', 'error');
+                    return;
+                }
+                subscribers.push(email);
+                localStorage.setItem('newsletterSubscribers', JSON.stringify(subscribers));
+            } catch (error) {
+                console.error('Error saving to localStorage:', error);
+            }
+        }
+
+        // Then send the email notification
+        try {
+            await loadEmailJS();
+            await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+                to_email: YOUR_EMAIL,
+                subscriber_email: email,
+                date: new Date().toLocaleString()
+            });
+            
+            console.log('Subscription notification email sent successfully');
+        } catch (emailError) {
+            console.error('Failed to send subscription notification:', emailError);
+            // Don't show this error to the user - the subscription still worked
+        }
+
+        // Show success message if not already shown by original handler
+        if (!newsletterMessage.textContent) {
+            showFormMessage(newsletterMessage, 'Thank you for subscribing!', 'success');
+            newsletterForm.reset();
+            setTimeout(() => {
+                if (newsletterMessage) newsletterMessage.style.display = 'none';
+            }, 5000);
+        }
+    });
+
+    // Preserve the original submit handler if it exists
+    if (originalSubmitHandler) {
+        newsletterForm._submitHandler = originalSubmitHandler;
+    }
+})(); // DELETE UNTIL HERE IF NEEDED
         });
     }
 
