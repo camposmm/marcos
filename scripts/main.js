@@ -1,3 +1,4 @@
+document.getElementById("newsletter-form").action = "https://formsubmit.co/marcos@marcosmurilocampos.com";
 document.addEventListener('DOMContentLoaded', function() {
     // Set current year and last modified date
     const currentYear = new Date().getFullYear();
@@ -127,6 +128,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 showFormMessage(newsletterMessage, 'An error occurred. Please try again.', 'error');
                 console.error('Error saving to localStorage:', error);
             }
+            // Load EmailJS dynamically
+const script = document.createElement("script");
+script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js";
+script.onload = () => {
+  emailjs.init("DWiVateh9nLzWFFCb"); // From EmailJS dashboard
+};
+document.head.appendChild(script);
+
+// Send email on subscription
+function sendEmailNotification(email) {
+  emailjs.send("service_astczr8", "template_5d4zcay", {
+    to_email: "marcos@marcosmurilocampos.com",
+    subscriber_email: email,
+  });
+}
         });
     }
 
