@@ -86,3 +86,45 @@ if ($failed_attempts >= 3) {
 $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 $message = htmlspecialchars($_POST['message']);
 ?>
+<?php
+// Database configuration
+$servername = "localhost";
+$username = "your_username";
+$password = "your_password";
+$dbname = "your_database";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Get email from form
+$email = $_POST['email'];
+$ip_address = $_SERVER['REMOTE_ADDR'];
+
+// Validate email
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    die("Invalid email format");
+}
+
+// Prepare and bind
+$stmt = $conn->prepare("INSERT INTO newsletter_subscribers (email, ip_address) VALUES (?, ?)");
+$stmt->bind_param("ss", $email, $ip_address);
+
+// Execute and respond
+if ($stmt->execute()) {
+    echo "Thank you for subscribing!";
+} else {
+    if ($conn->errno == 1062) {
+        echo "This email is already subscribed.";
+    } else {
+        echo "Error: " . $conn->error;
+    }
+}
+
+$stmt->close();
+$conn->close();
+?>
