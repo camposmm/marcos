@@ -71,13 +71,14 @@
 
                     <!-- In your existing contact.html file, update just the form section -->
 <div class="contact-form">
+    <div class="contact-form">
     <h3>Send Me a Message</h3>
-    <form id="contact-form">
-        <!-- CSRF Protection (add at top of form) -->
-        <input type="hidden" id="csrf_token" name="csrf_token" value="">
+    <form id="contact-form" action="process_contact.php" method="POST">
+        <!-- CSRF Protection -->
+        <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token'] ?? ''); ?>">
         
         <!-- Honeypot Field -->
-        <div class="honeypot">
+        <div class="honeypot" style="display: none;">
             <label for="website">Leave this empty</label>
             <input type="text" id="website" name="website" tabindex="-1">
         </div>

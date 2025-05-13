@@ -401,3 +401,31 @@ document.addEventListener('DOMContentLoaded', function() {
         return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     }
 });
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const formData = new FormData(form);
+    const messageDiv = document.getElementById('contact-message');
+    
+    fetch(form.action, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.text().then(text => { throw new Error(text) });
+        }
+        return response.json();
+    })
+    .then(data => {
+        messageDiv.textContent = data.message;
+        messageDiv.className = 'form-message success';
+        form.reset();
+        grecaptcha.reset();
+    })
+    .catch(error => {
+        messageDiv.textContent = error.message;
+        messageDiv.className = 'form-message error';
+    });
+});
