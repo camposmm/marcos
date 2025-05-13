@@ -89,4 +89,5 @@ if ($mail_sent) {
     http_response_code(500);
     die('Failed to send message. Please try again later.');
 }
+error_log("Mail sending failed to: $to"); // Add this if mail_sent is false
 ?>
